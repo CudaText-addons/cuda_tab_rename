@@ -29,6 +29,7 @@ class Command:
 
   def rename_current(self):
     path = ed.get_filename()
+    newname = ''
     if path:
       start_name = ed.get_prop(PROP_TAB_TITLE)
       newname = dlg_input(_('New tab name for file:\n  ')+path, start_name)
