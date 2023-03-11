@@ -29,10 +29,16 @@ class Command:
 
   def rename_current(self):
     path = ed.get_filename()
-    newname = ''
-    if path:
-      start_name = ed.get_prop(PROP_TAB_TITLE)
-      newname = dlg_input(_('New tab name for file:\n  ')+path, start_name)
+    start_name = ed.get_prop(PROP_TAB_TITLE)
+    if not path: # work specially for untitled tabs
+        newname = dlg_input(_('New tab name for untitled tab:\n  ')+start_name, start_name)
+        if newname is None:
+            return
+        ed.set_prop(PROP_TAB_TITLE, newname)
+        return
+    newname = dlg_input(_('New tab name for file:\n  ')+path, start_name)
+    if newname is None:
+        return
     if newname == '':     # empty str - reset
         self.clear_current()
     elif newname  and  newname != start_name:     # set new name
