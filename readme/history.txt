@@ -1,6 +1,9 @@
+2023.03.11
++ add: support untitled tabs too
+
 2021.04.30
-added:   entering empty new name - resets tab to original name
-removed: command to reset tab name
++ add: entering empty new name - resets tab to original name
+* removed: command to reset tab name
 
 2021.02.03
 initial version
