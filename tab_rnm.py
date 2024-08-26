@@ -49,13 +49,13 @@ class Command:
     if newname is None:
         return
     if newname == '':     # empty str - reset
-        self.clear_current()
+        self.clear_current(ed)
     elif newname  and  newname != start_name:     # set new name
         ed.set_prop(PROP_TAB_TITLE, prefix + newname)
         namemap[path] = newname
         self.save_cfg()
 
-  def clear_current(self):
+  def clear_current(self, ed):
     path = ed.get_filename()
     if path  and path in namemap:
       del namemap[path]
