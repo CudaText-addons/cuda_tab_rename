@@ -7,11 +7,11 @@ homepage=https://github.com/CudaText-addons/cuda_tab_rename
 
 [item1]
 section=events
-events=on_open,on_save
+events=on_open,on_save,on_tab_menu
 
 [item2]
 section=commands
-caption=Tab-Rename\Rename current tab
+caption=Tab-Rename\Rename current tab...
 method=rename_current
 
 [item100]

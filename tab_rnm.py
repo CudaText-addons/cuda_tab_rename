@@ -13,11 +13,15 @@ prefix = ':'
 namemap = {}
 
 class Command:
+  ed_menu = ed
 
   def __init__(self):
     self.load_config()
 
-    menu_proc('tab', MENU_ADD, command='cuda_tab_rename.rename_current', caption=_('Rename tab'))
+    menu_proc('tab', MENU_ADD, command='cuda_tab_rename.rename_ctx_menu', caption=_('Rename tab...'))
+
+  def on_tab_menu(self, ed_self):
+    self.ed_menu = ed_self
 
   def config(self):
     if not os.path.exists(fn_config):
@@ -26,8 +30,13 @@ class Command:
         json.dump(namemap, f, indent=2)
     file_open(fn_config)
 
-
   def rename_current(self):
+    self.rename_ex(ed)
+
+  def rename_ctx_menu(self):
+    self.rename_ex(self.ed_menu)
+
+  def rename_ex(self, ed):
     path = ed.get_filename()
     start_name = ed.get_prop(PROP_TAB_TITLE)
     if not path: # work specially for untitled tabs

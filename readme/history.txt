@@ -1,3 +1,6 @@
+2024.08.26
++ add: if command is called from tab-context-menu, apply it to the right-clicked ui-tab (before: applied to the current tab)
+
 2023.03.11
 + add: support untitled tabs too
 
