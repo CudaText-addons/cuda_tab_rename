@@ -1,3 +1,6 @@
+2026.11.21
+- fix: avoid deprecated API: get_filename
+
 2024.08.26
 + add: if command is called from tab-context-menu, apply it to the right-clicked ui-tab (before: applied to the current tab)
 

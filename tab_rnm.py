@@ -37,7 +37,7 @@ class Command:
     self.rename_ex(self.ed_menu)
 
   def rename_ex(self, ed):
-    path = ed.get_filename()
+    path = ed.get_prop(PROP_FN, '')
     start_name = ed.get_prop(PROP_TAB_TITLE)
     if not path: # work specially for untitled tabs
         newname = dlg_input(_('New tab name for untitled tab:\n  ')+start_name, start_name)
@@ -56,7 +56,7 @@ class Command:
         self.save_cfg()
 
   def clear_ex(self, ed):
-    path = ed.get_filename()
+    path = ed.get_prop(PROP_FN, '')
     if path  and path in namemap:
       del namemap[path]
       ed.set_prop(PROP_TAB_TITLE, os.path.basename(path))
@@ -64,20 +64,20 @@ class Command:
 
 
   def on_open(self, ed_self):
-    path = ed_self.get_filename()
+    path = ed_self.get_prop(PROP_FN, '')
     newname = namemap.get(path)
     if newname is not None:
       ed_self.set_prop(PROP_TAB_TITLE, prefix + newname)
 
   def on_save(self, ed_self):
-    if ed_self.get_filename() == fn_config:
+    if ed_self.get_prop(PROP_FN, '') == fn_config:
       oldmap = {**namemap}
       self.load_config()
 
       # apply new config
       for h in ed_handles():
         e = Editor(h)
-        path = e.get_filename()
+        path = e.get_prop(PROP_FN, '')
 
         if path in namemap: # apply new config
           e.set_prop(PROP_TAB_TITLE, prefix + namemap[path])
