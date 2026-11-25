@@ -1,4 +1,5 @@
-2026.11.21
+2026.11.25
+- fix: avoid tab title resetting after file saving
 - fix: avoid deprecated API: get_filename
 
 2024.08.26
