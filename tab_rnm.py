@@ -70,7 +70,13 @@ class Command:
       ed_self.set_prop(PROP_TAB_TITLE, prefix + newname)
 
   def on_save(self, ed_self):
-    if ed_self.get_prop(PROP_FN, '') == fn_config:
+    fn_cur = ed_self.get_prop(PROP_FN, '')
+
+    # after saving, app resets the tab-title and tab-title-reason
+    if fn_cur in namemap:
+      ed_self.set_prop(PROP_TAB_TITLE, prefix + namemap[fn_cur])
+
+    if fn_cur == fn_config:
       oldmap = {**namemap}
       self.load_config()
 
